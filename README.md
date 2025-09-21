@@ -1,49 +1,70 @@
-# Time_Series_Forecasting2025
+# Air Quality Forecasting in Beijing
 
-Project Title: Air Quality Forecasting in Beijing
-Project Overview
+## Project Overview
+
+This project applies **Recurrent Neural Networks (RNNs)** and **Long Short-Term Memory (LSTM)** models to forecast PM2.5 concentrations in Beijing. Utilizing historical air quality and weather data, the goal was to build a robust and generalizable forecasting model.
+
+The development process, documented as part of the **Machine Learning Techniques I course**, involved a deep dive into debugging and correcting severe overfitting.
+
+## Key Project Learnings & Outcomes
+
+**Diagnosing and Overcoming Overfitting:**
+
+The project highlighted a critical machine learning challenge: building a model that generalizes well beyond its training data. Our initial low local RMSE was misleading, as revealed by a high, inconsistent score on the Kaggle leaderboard. This led to a systematic debugging effort.
+
+**Model Stability and Generalization:**
+
+We transitioned from an unstable, overly complex stacked LSTM architecture with an incorrect `ReLU` activation to a simpler, more robust **single-layer LSTM** with **`Dropout`** and **`EarlyStopping`**. This strategic simplification resulted in a more stable and reliable model.
+
+**Preprocessing is Paramount:**
+
+The experience reinforced the foundational importance of a meticulous preprocessing pipeline. Critical fixes included:
+*   Avoiding **data leakage** during scaling.
+*   Correctly handling the `datetime` column.
+*   Implementing a robust **iterative prediction loop** for the test set.
+
+## Repository Structure
+
+air_quality_forcasting/
+├── data/
+│ ├── train.csv
+│ └── test.csv
+├── notebooks/
+│ └── air_quality_forecasting_report.ipynb
+├── outputs/
+│ ├── best_model.keras
+│ └── submission.csv
+├── README.md
+└── .gitignore
 
 
-This project applies Recurrent Neural Networks (RNNs) and Long Short-Term Memory (LSTM) models to forecast PM2.5 concentrations in Beijing. It utilizes historical air quality and weather data to build a robust and generalizable forecasting model, documented as part of the Machine Learning Techniques I course.
+## Instructions for Reproduction
 
+**1. Setup Environment**
 
-Repository Structure
-*data*/: Contains the raw dataset files (train.csv and test.csv).
-*notebooks*/: Includes the Jupyter notebooks used for the analysis, including the final report notebook.
-*outputs*/: Stores the final model file (best_model.keras) and the Kaggle submission file (submission.csv).
-src**/: Contains any reusable Python scripts.
-*README.md*: This file, providing an overview of the project. 
+The project was developed in a Google Colab environment. The required libraries can be installed from the notebook.
 
+The data files must be placed in a `data/` subdirectory within the project root.
 
-##Instructions for Reproduction
+**Action Required:** File paths in the notebook need to be updated. Modify paths like `/content/drive/MyDrive/air_quality_forcasting/` to point to your local or Colab `data/` directory.
 
+**2. Running the Code**
 
-1. Setup Environment
-The project was developed in a Google Colab environment. The required libraries are listed in the notebook.
-The data files must be placed in a data/ subdirectory within the project root.
-The notebook is configured to load data from /content/drive/MyDrive/air_quality_forcasting/. To reproduce the results, please modify the pd.read_csv() file paths in the notebook to point to your local or Colab data/ directory.
+Open `air_quality_forecasting_report.ipynb` in your Jupyter environment.
 
-
- 
-3. Running the Code
-Open air_quality_forecasting_final_report.ipynb in your Jupyter environment.
 Execute all cells in order. The notebook will:
-Load and preprocess the data.
-Define and train the LSTM model.
-Save the best model to the outputs/ directory.
-Use the saved model to generate predictions on the test set.
-Create the final submission.csv file. 
-4. Generating Submissions for Kaggle
-Data Preparation: The notebook includes all necessary data preparation steps.
-Prediction: The trained model is used to generate predictions.
-Submission File: A submission.csv is generated in the outputs/ directory, formatted according to the Kaggle requirements.
-Key Insights from the Project
-Model Stability: The project's development involved a critical debugging process to address severe overfitting.
-Generalization: The final model, a single-layer LSTM with Dropout and EarlyStopping, demonstrated improved generalization compared to earlier flawed and overly complex architectures.
-Preprocessing Importance: Proper data handling, including preventing data leakage and correctly formatting time-series data, was found to be crucial for achieving a reliable model.
+*   Load and preprocess the data, including handling non-stationarity.
+*   Define and train the refined LSTM model.
+*   Save the best model to the `outputs/` directory.
+*   Use the saved model to generate predictions on the test set.
+*   Create the final `submission.csv` file.
 
+**3. Kaggle Submission**
 
-GitHub Repository Link
+The notebook generates a `submission.csv` file in the `outputs/` directory, correctly formatted for Kaggle. Use this file for your final submission.
 
-License:
-MIT License
+## Acknowledgements
+
+This project benefited from resources provided during the Machine Learning Techniques I course. We also thank the creators of the open-source libraries `pandas`, `NumPy`, `TensorFlow`, and `Scikit-learn` for their invaluable contributions to the machine learning community.
+
+## License
