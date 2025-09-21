@@ -26,15 +26,25 @@ The experience reinforced the foundational importance of a meticulous preprocess
 ## Repository Structure
 
 air_quality_forcasting/
+
 ├── data/
+
 │ ├── train.csv
+
 │ └── test.csv
+
 ├── notebooks/
+
 │ └── air_quality_forecasting_report.ipynb
+
 ├── outputs/
+
 │ ├── best_model.keras
+
 │ └── submission.csv
+
 ├── README.md
+
 └── .gitignore
 
 
